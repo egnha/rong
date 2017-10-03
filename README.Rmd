@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 
 # rong
 
+_The rong approach to wrong inputs. Two (w)rongs do make a right._
+
 > _rong_ is a complete reimplementation of
 > [valaddin](https://github.com/egnha/valaddin) that supports tidyverse
 > semantics.

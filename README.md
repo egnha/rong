@@ -3,6 +3,8 @@
 rong
 ====
 
+*The rong approach to wrong inputs. Two (w)rongs do make a right.*
+
 > *rong* is a complete reimplementation of [valaddin](https://github.com/egnha/valaddin) that supports tidyverse semantics.
 >
 > Since this is a major break in the API of the current [CRAN version](https://cran.r-project.org/package=valaddin) of valaddin (which appears to have no reverse dependencies), it make sense to start from a clean slate and distinguish this reconception with a new name.
