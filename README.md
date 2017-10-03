@@ -3,7 +3,7 @@
 rong
 ====
 
-*The rong approach to wrong inputs. Two (w)rongs do make a right.*
+*The rong approach to wrong inputs. Two (w)rongs make a right.*
 
 > *rong* is a complete reimplementation of [valaddin](https://github.com/egnha/valaddin) that supports tidyverse semantics.
 >
