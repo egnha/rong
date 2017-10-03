@@ -1,16 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-valaddin
-========
+rong
+====
 
-[![Travis-CI Build Status](https://travis-ci.org/egnha/valaddin.svg?branch=master)](https://travis-ci.org/egnha/valaddin) [![codecov](https://codecov.io/gh/egnha/valaddin/branch/master/graph/badge.svg)](https://codecov.io/gh/egnha/valaddin/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/valaddin)](https://cran.r-project.org/package=valaddin) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> *rong* is a complete reimplementation of [valaddin](https://github.com/egnha/valaddin) that supports tidyverse semantics.
+>
+> Since this is a major break in the API of the current [CRAN version](https://cran.r-project.org/package=valaddin) of valaddin (which appears to have no reverse dependencies), it make sense to start from a clean slate and distinguish this reconception with a new name.
 
 Overview
 --------
 
-Dealing with invalid function inputs is a chronic pain for R users, given R’s weakly typed nature. *valaddin* provides pain relief in the form of an adverb, `firmly()`, that enables you to *transform* an existing function into a function with input validation checks, in a manner suitable for both programmatic and interactive use.
+Dealing with invalid function inputs is a chronic pain for R users, given R’s weakly typed nature. *rong* provides pain relief in the form of an adverb, `firmly()`, that enables you to *transform* an existing function into a function with input validation checks, in a manner suitable for both programmatic and interactive use.
 
-Additionally, valaddin provides:
+Additionally, rong provides:
 
 -   `fasten()`, to help you write cleaner and more explicit function declarations in your scripts, by providing a *functional operator* that “fastens” a given set of input validations to functions (i.e., it [curries](https://en.wikipedia.org/wiki/Currying) `firmly()`)
 
@@ -23,27 +25,15 @@ These functions support [tidyverse semantics](https://rpubs.com/hadley/dplyr-pro
 Installation
 ------------
 
-### Development version (pre-0.3.0)
-
 ``` r
 # install.packages("devtools")
-devtools::install_github("egnha/valaddin")
+devtools::install_github("egnha/rong")
 ```
-
-The development version brings major improvements to the user interface and functionality of valaddin. The main functions `fasten()`, `firmly()`, `loosely()`, `validate()` are considered stable.
-
-### CRAN version (0.1.2)
-
-``` r
-install.packages("valaddin")
-```
-
-Though recently updated (2017-08-11), the current [CRAN version](https://cran.r-project.org/package=valaddin) still uses the soon-to-be deprecated formula-based syntax for input validation checks. This is somewhat faster at input validation than the current development version, but at the expense of syntactic flexibility.
 
 Usage
 -----
 
-To illustrate valaddin’s functional approach to input validation, consider the function that computes the barycentric coordinates of a point in the plane:
+To illustrate rong’s functional approach to input validation, consider the function that computes the barycentric coordinates of a point in the plane:
 
 ``` r
 bc <- function(x, y) {
@@ -56,7 +46,7 @@ bc <- function(x, y) {
 Imagine applying `bc()` “firmly,” exactly as before, but with the assurance that the inputs are indeed numeric. To enable this, transform `bc()` using `firmly()`, relative to the validation specified by the predicate function `is.numeric()`:
 
 ``` r
-library(valaddin)
+library(rong)
 
 bc2 <- firmly(bc, is.numeric)
 
@@ -83,7 +73,7 @@ bc3(.5i, ".2")
 
 ### Express input validations using tidyverse idioms
 
-valaddin supports [quasiquotation](http://rlang.tidyverse.org/reference/quasiquotation.html) and [splicing](http://rlang.tidyverse.org/reference/quasiquotation.html) semantics for specifying input validation checks. Checks and (custom) error messages are captured as [quosures](http://rlang.tidyverse.org/reference/quosure.html), to ensure that validations, and their error reports, are hygienically evaluated in the intended scope—transparently to the user.
+rong supports [quasiquotation](http://rlang.tidyverse.org/reference/quasiquotation.html) and [splicing](http://rlang.tidyverse.org/reference/quasiquotation.html) semantics for specifying input validation checks. Checks and (custom) error messages are captured as [quosures](http://rlang.tidyverse.org/reference/quosure.html), to ensure that validations, and their error reports, are hygienically evaluated in the intended scope—transparently to the user.
 
 ``` r
 z <- 0
@@ -189,9 +179,9 @@ In addition to having cleaner code, you can:
 Related packages
 ----------------
 
--   valaddin provides a basic set of predicate functions—prefixed `chk_` for easy lookup—to specify common kinds of checks, e.g., type and property checks, comparisons, etc.
+-   rong provides a basic set of predicate functions—prefixed `chk_` for easy lookup—to specify common kinds of checks, e.g., type and property checks, comparisons, etc.
 
-    To enrich valaddin’s vocabulary of predicate functions, use:
+    To enrich rong’s vocabulary of predicate functions, use:
 
     -   specialized collections of predicate functions, such as [assertive](https://bitbucket.org/richierocks/assertive), [assertthat](https://github.com/hadley/assertthat), [checkmate](https://github.com/mllg/checkmate)
 
@@ -202,7 +192,7 @@ Related packages
 Acknowledgement
 ---------------
 
-valaddin makes essential use of the [rlang](https://github.com/tidyverse/rlang) package by [Lionel Henry](https://github.com/lionel-) and [Hadley Wickham](https://github.com/hadley), which provides the engine for quasiquotation and expression capture. The [glue](https://github.com/tidyverse/glue) package by [Jim Hester](https://github.com/jimhester) enables string interpolation of error messages.
+rong makes essential use of the [rlang](https://github.com/tidyverse/rlang) package by [Lionel Henry](https://github.com/lionel-) and [Hadley Wickham](https://github.com/hadley), which provides the engine for quasiquotation and expression capture. The [glue](https://github.com/tidyverse/glue) package by [Jim Hester](https://github.com/jimhester) enables string interpolation of error messages.
 
 License
 -------

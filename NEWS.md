@@ -1,6 +1,10 @@
-# valaddin
+# rong
 
-## 0.2.0.9000
+## 0.1.0.9000
+
+* Forked from valaddin
+
+## valaddin 0.2.0.9000
 
 ### Redesign of API
 
@@ -17,7 +21,7 @@ This version is a major redesign of the API, which introduces:
 * `firm_checks()` is no longer exported, since it exposes a detail of the
   implementation of `fasten()` and `firmly()`.
 
-## 0.1.0.9000
+## valaddin 0.1.0.9000
 
 ### Operator for input validation
 
@@ -100,7 +104,7 @@ This version is a major redesign of the API, which introduces:
   behavior of that option can be replicated by signaling an appropriate warning 
   prior to calling `loosely()`.)
 
-## 0.1.0
+## valaddin 0.1.0
 
 * First stable release:
     + Main functional operators: `firmly`, `loosely`

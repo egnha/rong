@@ -1,6 +1,6 @@
-Package: valaddin
+Package: rong
 Title: Functional Input Validation
-Version: 0.2.0.9999
+Version: 0.1.0.9999
 Authors@R:
     person("Eugene", "Ha", email = "eha@posteo.de", role = c("aut", "cre"))
 Description: A set of basic tools to transform functions into functions with
@@ -21,8 +21,8 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/egnha/valaddin
-BugReports: https://github.com/egnha/valaddin/issues
+URL: https://github.com/egnha/rong
+BugReports: https://github.com/egnha/rong/issues
 Collate:
     'utils.R'
     'utils-rd.R'
@@ -33,6 +33,6 @@ Collate:
     'validation.R'
     'operators.R'
     'predicates.R'
-    'valaddin.R'
+    'rong.R'
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)

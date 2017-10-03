@@ -12,22 +12,26 @@ knitr::opts_chunk$set(
 )
 ```
 
-# valaddin
+# rong
 
-[![Travis-CI Build Status](https://travis-ci.org/egnha/valaddin.svg?branch=master)](https://travis-ci.org/egnha/valaddin)
-[![codecov](https://codecov.io/gh/egnha/valaddin/branch/master/graph/badge.svg)](https://codecov.io/gh/egnha/valaddin/)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/valaddin)](https://cran.r-project.org/package=valaddin)
- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> _rong_ is a complete reimplementation of
+> [valaddin](https://github.com/egnha/valaddin) that supports tidyverse
+> semantics.
+>
+> Since this is a major break in the API of the current
+> [CRAN version](https://cran.r-project.org/package=valaddin) of valaddin (which
+> appears to have no reverse dependencies), it make sense to start from a clean
+> slate and distinguish this reconception with a new name.
 
 ## Overview
 
 Dealing with invalid function inputs is a chronic pain for R users, given R’s 
-weakly typed nature. _valaddin_ provides pain relief in the form of an adverb,
+weakly typed nature. _rong_ provides pain relief in the form of an adverb,
 `firmly()`, that enables you to _transform_ an existing function into a function
 with input validation checks, in a manner suitable for both programmatic and
 interactive use.
 
-Additionally, valaddin provides:
+Additionally, rong provides:
     
   * `fasten()`, to help you write cleaner and more explicit function
     declarations in your scripts, by providing a _functional operator_ that
@@ -40,40 +44,22 @@ Additionally, valaddin provides:
   * `loosely()`, to undo the application of input validation checks, at any
     time, by returning the original function
     
-These functions support [tidyverse 
-semantics](https://rpubs.com/hadley/dplyr-programming) such as 
+These functions support
+[tidyverse semantics](https://rpubs.com/hadley/dplyr-programming) such as 
 [quasiquotation](http://rlang.tidyverse.org/reference/quasiquotation.html) and 
 [splicing](http://rlang.tidyverse.org/reference/quasiquotation.html), to provide
 a flexible yet simple grammar for input validations.
 
 ## Installation
 
-### Development version (pre-0.3.0)
-
 ```{r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("egnha/valaddin")
+devtools::install_github("egnha/rong")
 ```
-
-The development version brings major improvements to the user interface and
-functionality of valaddin. The main functions `fasten()`, `firmly()`,
-`loosely()`, `validate()` are considered stable.
-
-### CRAN version (0.1.2)
-
-```{r, eval = FALSE}
-install.packages("valaddin")
-```
-
-Though recently updated (2017-08-11), the current [CRAN
-version](https://cran.r-project.org/package=valaddin) still uses the soon-to-be
-deprecated formula-based syntax for input validation checks. This is somewhat
-faster at input validation than the current development version, but at the
-expense of syntactic flexibility.
 
 ## Usage
 
-To illustrate valaddin’s functional approach to input validation, consider the 
+To illustrate rong’s functional approach to input validation, consider the 
 function that computes the barycentric coordinates of a point in the plane:
 
 ```{r}
@@ -90,7 +76,7 @@ the inputs are indeed numeric. To enable this, transform `bc()` using
 `is.numeric()`:
 
 ```{r error = TRUE, purl = FALSE}
-library(valaddin)
+library(rong)
 
 bc2 <- firmly(bc, is.numeric)
 
@@ -113,7 +99,7 @@ bc3(.5i, ".2")
 
 ### Express input validations using tidyverse idioms
 
-valaddin supports 
+rong supports 
 [quasiquotation](http://rlang.tidyverse.org/reference/quasiquotation.html) and 
 [splicing](http://rlang.tidyverse.org/reference/quasiquotation.html) semantics 
 for specifying input validation checks. Checks and (custom) error messages are 
@@ -219,11 +205,11 @@ In addition to having cleaner code, you can:
 
 ## Related packages
 
-  * valaddin provides a basic set of predicate functions—prefixed `chk_` for 
+  * rong provides a basic set of predicate functions—prefixed `chk_` for 
     easy lookup—to specify common kinds of checks, e.g., type and property
     checks, comparisons, etc.
     
-    To enrich valaddin’s vocabulary of predicate functions, use:
+    To enrich rong’s vocabulary of predicate functions, use:
     
     * specialized collections of predicate functions, such as
       [assertive](https://bitbucket.org/richierocks/assertive),
@@ -240,7 +226,7 @@ In addition to having cleaner code, you can:
     
 ## Acknowledgement
 
-valaddin makes essential use of the [rlang](https://github.com/tidyverse/rlang)
+rong makes essential use of the [rlang](https://github.com/tidyverse/rlang)
 package by [Lionel Henry](https://github.com/lionel-) and
 [Hadley Wickham](https://github.com/hadley), which provides the engine for
 quasiquotation and expression capture. The
