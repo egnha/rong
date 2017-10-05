@@ -1,16 +1,16 @@
 ---
-title: "Using valaddin"
+title: "rong"
 author: "Eugene Ha"
-date: "2017-07-05"
+date: "2017-10-05"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using valaddin}
+  %\VignetteIndexEntry{rong}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
-library(valaddin)
+library(rong)
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 

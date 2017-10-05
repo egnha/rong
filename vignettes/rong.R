@@ -1,4 +1,4 @@
 ## ---- include = FALSE----------------------------------------------------
-library(valaddin)
+library(rong)
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
