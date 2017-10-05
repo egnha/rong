@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 
 _The rong approach to wrong inputs. Two (w)rongs make a right._
 
+[![Build Status](https://travis-ci.org/egnha/rong.svg?branch=master)](https://travis-ci.org/egnha/rong)
+[![codecov](https://codecov.io/gh/egnha/rong/branch/master/graph/badge.svg)](https://codecov.io/gh/egnha/rong)
+
 > _rong_ is a complete reimplementation of
 > [valaddin](https://github.com/egnha/valaddin) that supports tidyverse
 > semantics.
