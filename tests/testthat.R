@@ -1,4 +1,4 @@
 library(testthat)
-library(valaddin)
+library(rong)
 
-test_check("valaddin")
+test_check("rong")
