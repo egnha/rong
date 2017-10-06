@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Build Status](https://travis-ci.org/egnha/rong.svg?branch=master)](https://travis-ci.org/egnha/rong) [![codecov](https://codecov.io/gh/egnha/rong/branch/master/graph/badge.svg)](https://codecov.io/gh/egnha/rong)
+
 rong
 ====
 
 *The rong approach to wrong inputs. Two (w)rongs make a right.*
-
-[![Build Status](https://travis-ci.org/egnha/rong.svg?branch=master)](https://travis-ci.org/egnha/rong) [![codecov](https://codecov.io/gh/egnha/rong/branch/master/graph/badge.svg)](https://codecov.io/gh/egnha/rong)
 
 > *rong* is a complete reimplementation of [valaddin](https://github.com/egnha/valaddin) that supports tidyverse semantics.
 >
