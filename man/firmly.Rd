@@ -20,7 +20,7 @@ subclass is \code{inputValidationError}.}
 }
 \description{
 The main functions of \pkg{rong} apply or undo input validation
-checks to functions:
+checks to functions.
 \itemize{
 \item \code{firmly()} transforms a function into a function with input validation
 checks
@@ -36,7 +36,7 @@ These are supplemented by:
 \item \code{vld_error_cls()}, which extracts the subclass of the error condition
 that is signaled when an input validation error occurs
 \item \code{is_firm()}, which checks whether an object is a firmly applied function,
-i.e., a function created by \code{firmly()}
+i.e., is created by \code{firmly()}
 }
 }
 \section{How to specify validation checks}{
@@ -65,8 +65,8 @@ Specifiy expressions (of arguments) when you want to restrict the scope of
 a check.
 
 \strong{Example} — To require that \code{y} and \code{z} are numeric (but not \code{x}
-necessarily), specify them as arguments of \code{is.numeric()} (this works even
-though \code{is.numeric()}, as a function, only takes a single argument):\preformatted{    add_num_yz <- firmly(add, is.numeric(y, z))
+necessarily), specify them as arguments of \code{is.numeric()} (this is valid
+even though \code{is.numeric()}, as a function, only takes a single argument):\preformatted{    add_num_yz <- firmly(add, is.numeric(y, z))
     add_num_yz(TRUE, 2, 3)     # 6
     add_num_yz(TRUE, TRUE, 3)  # Error: 'FALSE: is.numeric(y)'
 }
@@ -110,7 +110,8 @@ Setting \code{case_sensitive} is optional, and must be done by name.\preformatte
 
 \subsection{Succinctly express short predicates}{
 Short predicates of a single argument can be succinct expressed by their
-body alone (enclosed in curly braces). Use \code{.} to indicate the argument.
+body alone (enclosed in curly braces). Use \code{.} (dot) to indicate the
+argument.
 
 \strong{Example} — Monotonicity of arguments can be expressed using an ordinary
 (anonymous) function declaration\preformatted{    add_inc <- firmly(add, (function(.) isTRUE(. > 0))(y - x, z - y))

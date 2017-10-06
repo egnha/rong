@@ -154,7 +154,7 @@ print.validator <- function(x, ...) {
 #' Apply a function firmly
 #'
 #' @description The main functions of \pkg{rong} apply or undo input validation
-#'   checks to functions:
+#'   checks to functions.
 #'
 #'   - `firmly()` transforms a function into a function with input validation
 #'     checks
@@ -169,7 +169,7 @@ print.validator <- function(x, ...) {
 #'   - `vld_error_cls()`, which extracts the subclass of the error condition
 #'     that is signaled when an input validation error occurs
 #'   - `is_firm()`, which checks whether an object is a firmly applied function,
-#'     i.e., a function created by `firmly()`
+#'     i.e., is created by `firmly()`
 #'
 #' @aliases fasten firmly loosely vld_error_cls is_firm
 #' @evalRd rd_usage(c("fasten", "firmly", "loosely", "vld_error_cls", "is_firm"))
@@ -208,8 +208,8 @@ print.validator <- function(x, ...) {
 #'   a check.
 #'
 #'   **Example** — To require that `y` and `z` are numeric (but not `x`
-#'   necessarily), specify them as arguments of `is.numeric()` (this works even
-#'   though `is.numeric()`, as a function, only takes a single argument):
+#'   necessarily), specify them as arguments of `is.numeric()` (this is valid
+#'   even though `is.numeric()`, as a function, only takes a single argument):
 #'   ```
 #'       add_num_yz <- firmly(add, is.numeric(y, z))
 #'       add_num_yz(TRUE, 2, 3)     # 6
@@ -258,7 +258,8 @@ print.validator <- function(x, ...) {
 #'
 #'   \subsection{Succinctly express short predicates}{
 #'   Short predicates of a single argument can be succinct expressed by their
-#'   body alone (enclosed in curly braces). Use `.` to indicate the argument.
+#'   body alone (enclosed in curly braces). Use `.` (dot) to indicate the
+#'   argument.
 #'
 #'   **Example** — Monotonicity of arguments can be expressed using an ordinary
 #'   (anonymous) function declaration
