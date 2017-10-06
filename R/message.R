@@ -28,7 +28,7 @@
 #'
 #' @export
 vld_error_msg <- function(f) {
-  environment(f)$`__valaddin_error_message` %||% empty_msg
+  environment(f)$`__rong_error_message` %||% empty_msg
 }
 
 #' @param env Environment that is in scope when a `\{\{...\}\}` substring of the
@@ -55,7 +55,7 @@ vld_error_msg <- function(f) {
   else
     abort("Error message must be a string or quosure (of a string)")
   env_msg <- new.env(parent = environment(f))
-  env_msg$`__valaddin_error_message` <- msg
+  env_msg$`__rong_error_message` <- msg
   environment(f) <- env_msg
   invisible(f)
 }

@@ -153,8 +153,8 @@ print.validator <- function(x, ...) {
 
 #' Apply a function firmly
 #'
-#' @description The main functions of \pkg{valaddin} apply or undo input
-#'   validation checks to functions:
+#' @description The main functions of \pkg{rong} apply or undo input validation
+#'   checks to functions:
 #'
 #'   - `firmly()` transforms a function into a function with input validation
 #'     checks

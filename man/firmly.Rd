@@ -19,8 +19,8 @@ subclass is \code{inputValidationError}.}
 \item{x}{Object to test.}
 }
 \description{
-The main functions of \pkg{valaddin} apply or undo input
-validation checks to functions:
+The main functions of \pkg{rong} apply or undo input validation
+checks to functions:
 \itemize{
 \item \code{firmly()} transforms a function into a function with input validation
 checks

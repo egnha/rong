@@ -25,7 +25,7 @@ vec_strjoin <- function(f_str, join = "\n") {
 #' @examples
 #' rd_alias(c("firmly", "loosely"))
 #' rd_usage("ls")
-#' rd_usage(c("firmly", "loosely"), pos = "package:valaddin")
+#' rd_usage(c("firmly", "loosely"), pos = "package:rong")
 #' rd_seealso("Logarithm: \\code{\\link{log}}, \\code{\\link[utils]{head}}")
 #'
 #' @noRd
