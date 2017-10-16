@@ -21,7 +21,7 @@ fasten_ <- function(..., error_class = NULL) {
     if (is_empty(args) || is_empty(checks) && is_errcls_irrelevant)
       return(f)
     chks <- assemble_checks(firm_checks(f), args)
-    error_class <- error_class %||% vld_error_cls(f) %||% "inputValidationError"
+    error_class <- error_class %|||% vld_error_cls(f) %|||% "inputValidationError"
     fasten_checks(f, chks, sig, args, error_class)
   }
 }
@@ -99,7 +99,7 @@ validator <- fasten(
   UQS(error_class_chk)
 )(
   function(..., error_class = NULL) {
-    error_class <- error_class %||% "objectValidationError"
+    error_class <- error_class %|||% "objectValidationError"
     `class<-`(
       fasten_(..., error_class = error_class)(function(.) invisible(.)),
       "validator"

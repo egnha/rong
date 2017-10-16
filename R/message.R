@@ -28,7 +28,7 @@
 #'
 #' @export
 vld_error_msg <- function(f) {
-  environment(f)$`__rong_error_message` %||% empty_msg
+  environment(f)$`__rong_error_message` %|||% empty_msg
 }
 
 #' @param env Environment that is in scope when a `\{\{...\}\}` substring of the

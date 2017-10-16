@@ -1,4 +1,4 @@
-`%||%` <- function(x, y) {
+`%|||%` <- function(x, y) {
   if (is_empty(x)) y else x
 }
 
@@ -52,5 +52,5 @@ nomen <- function(x) {
   lapply(nms, as.name)
 }
 names_nondot <- function(x) {
-  names(x)[names(x) != "..."] %||% character(0)
+  names(x)[names(x) != "..."] %|||% character(0)
 }
