@@ -41,37 +41,41 @@ checker <- function(pred, msg = empty_msg) {
   )
 }
 
-as_predicate <- function(q) {
-  expr <- f_rhs(q)
-  if (is_lambda(expr))
-    as_lambda_fn(expr, f_env(q))
-  else
-    list(fn = match_fn(q), expr = expr)
-}
-is_lambda <- function(x) {
-  is.call(x) && is_block(x)
-}
-as_lambda_fn <- function(x, env) {
-  fn <- eval(new_fn_expr(x), env)
-  list(fn = fn, expr = substitute(fn))
-}
-new_fn_expr <- function(body, args = alist(. = )) {
-  call("function", as.pairlist(args), body)
-}
-match_fn <- function(q) {
-  fn <- try_eval_tidy(q)
-  if (!is.function(fn))
-    abort(err_not_fn(q, fault = fn))
-  fn
-}
-err_not_fn <- function(q, fault) {
-  x <- expr_label(f_rhs(q))
-  if (is_error(fault)) {
-    msg <- conditionMessage(fault)
-    sprintf("Error determining whether %s is a function: %s", x, msg)
-  } else
-    paste("Not a function:", x)
-}
+as_predicate <- local({
+  is_lambda <- function(x) {
+    is.call(x) && is_block(x)
+  }
+  as_lambda_fn <- function(x, env) {
+    fn <- eval(new_fn_expr(x), env)
+    list(fn = fn, expr = substitute(fn))
+  }
+  new_fn_expr <- function(body, args = alist(. = )) {
+    call("function", as.pairlist(args), body)
+  }
+
+  match_fn <- function(q) {
+    fn <- try_eval_tidy(q)
+    if (!is.function(fn))
+      abort(err_not_fn(q, fault = fn))
+    fn
+  }
+  err_not_fn <- function(q, fault) {
+    x <- expr_label(f_rhs(q))
+    if (is_error(fault)) {
+      msg <- conditionMessage(fault)
+      sprintf("Error determining whether %s is a function: %s", x, msg)
+    } else
+      paste("Not a function:", x)
+  }
+
+  function(q) {
+    expr <- f_rhs(q)
+    if (is_lambda(expr))
+      as_lambda_fn(expr, f_env(q))
+    else
+      list(fn = match_fn(q), expr = expr)
+  }
+})
 
 prioritize_err_msg <- function(first, second) {
   if (is_empty_msg(first))
