@@ -29,9 +29,8 @@ glue_text <- function(text, env, data = NULL, ...) {
 deparse_str <- function(x) {
   d <- deparse(x)
   if (length(d) > 1)
-    paste(trimws(gsub("\\s+", " ", d), which = "left"), collapse = "")
-  else
-    d
+    d <- paste(trimws(gsub("\\s+", " ", d), which = "left"), collapse = "")
+  d
 }
 
 enumerate_many <- function(x, many = 2) {
