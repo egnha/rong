@@ -36,14 +36,10 @@ deparse_str <- function(x) {
 
 enumerate_many <- function(x, many = 2) {
   if (length(x) >= many)
-    enumerate(x)
+    x <- vapply(seq_along(x), function(i) sprintf("%d) %s\n", i, x[[i]]), "")
   else
-    paste0(x, "\n")
-}
-enumerate <- function(x) {
-  enumerations <-
-    vapply(seq_along(x), function(i) sprintf("%d) %s\n", i, x[[i]]), "")
-  paste(enumerations, collapse = "")
+    x <- paste0(x, "\n")
+  paste(x, collapse = "")
 }
 
 nomen <- function(x) {
