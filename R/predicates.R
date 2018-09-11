@@ -642,6 +642,8 @@ NULL
 #' @param n Length.
 #' @param encoding Encoding of a string or character vector. One of `UTF-8`,
 #'   `latin1`, or `unknown`.
+#' @param finite Whether values must be finite. Examples of non-finite values
+#'   are `Inf`, `-Inf` and `NaN`.
 #'
 #' @seealso
 #'   - [rlang type predicates][rlang::type-predicates], which underlie the

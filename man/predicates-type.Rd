@@ -10,6 +10,9 @@
 
 \item{encoding}{Encoding of a string or character vector. One of \code{UTF-8},
 \code{latin1}, or \code{unknown}.}
+
+\item{finite}{Whether values must be finite. Examples of non-finite values
+are \code{Inf}, \code{-Inf} and \code{NaN}.}
 }
 \description{
 Type predicates
@@ -96,7 +99,7 @@ chk_integer(x, n = NULL)
 
 chk_integerish(x, n = NULL)
 
-chk_double(x, n = NULL)
+chk_double(x, n = NULL, finite = NULL)
 
 chk_complex(x, n = NULL)
 

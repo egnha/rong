@@ -7,8 +7,8 @@
 \title{rong: Functional Input Validation}
 \description{
 A set of basic tools to transform functions into functions with
-input validation checks, in a manner suitable for both programmatic and
-interactive use.
+    input validation checks, in a manner suitable for both programmatic and
+    interactive use.
 }
 \seealso{
 Useful links:
