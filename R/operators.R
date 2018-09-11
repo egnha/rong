@@ -2,36 +2,49 @@ error_class_chk <- vld_spec(
   "'error_class' must be NULL or a character vector without NAs" :=
     {is.null(.) || is.character(.) && !anyNA(.)}(error_class)
 )
-fasten_ <- function(..., error_class = NULL) {
-  checks <- parse_checks(...)
-  assemble_checks <- function(checks_prev, args) {
-    check_all_args <- check_at_args(args)
-    chks <- do.call("rbind", c(
-      list(checks_prev),
-      list(checks$local),
-      list(check_all_args(checks$global))
-    ))
-    deduplicate(chks, by = "call")
+
+fasten_ <- local({
+  deduplicate <- function(xs, by) {
+    xs[rev(!duplicated(rev(xs[[by]]))), , drop = FALSE]
   }
-  error_class <- error_class[nzchar(error_class)]
-  function(f) {
-    sig <- formals(f)
-    args <- nomen(sig)
-    is_errcls_irrelevant <- is_empty(firm_checks(f)) || is_empty(error_class)
-    if (is_empty(args) || is_empty(checks) && is_errcls_irrelevant)
-      return(f)
-    chks <- assemble_checks(firm_checks(f), args)
-    error_class <- error_class %|||% vld_error_cls(f) %|||% "inputValidationError"
-    fasten_checks(f, chks, sig, args, error_class)
+  as_firm_closure <- function(f) {
+    if (!is_firm(f))
+      class(f) <- c("firm_closure", class(f))
+    f
   }
-}
-deduplicate <- function(xs, by) {
-  xs[rev(!duplicated(rev(xs[[by]]))), , drop = FALSE]
-}
-fasten_checks <- function(f, chks, sig, args, error_class) {
-  fn_fastened <- validation_closure(loosely(f), chks, sig, args, error_class)
-  as_firm_closure(with_sig(fn_fastened, sig, attributes(f)))
-}
+  with_sig <- function(f, sig, attrs) {
+    formals(f) <- sig
+    attributes(f) <- attrs
+    f
+  }
+  function(..., error_class = NULL) {
+    checks <- parse_checks(...)
+    assemble_checks <- function(checks_prev, args) {
+      check_all_args <- check_at_args(args)
+      chks <- do.call("rbind", c(
+        list(checks_prev),
+        list(checks$local),
+        list(check_all_args(checks$global))
+      ))
+      deduplicate(chks, by = "call")
+    }
+    error_class <- error_class[nzchar(error_class)]
+    fasten_checks <- function(f, chks, sig, args) {
+      error_class <- error_class %|||% vld_error_cls(f) %|||% "inputValidationError"
+      fn_fastened <- validation_closure(loosely(f), chks, sig, args, error_class)
+      as_firm_closure(with_sig(fn_fastened, sig, attributes(f)))
+    }
+    function(f) {
+      sig <- formals(f)
+      args <- nomen(sig)
+      is_errcls_irrelevant <- is_empty(firm_checks(f)) || is_empty(error_class)
+      if (is_empty(args) || is_empty(checks) && is_errcls_irrelevant)
+        return(f)
+      chks <- assemble_checks(firm_checks(f), args)
+      fasten_checks(f, chks, sig, args)
+    }
+  }
+})
 
 firm_closure_extractor <- function(this) {
   force(this)
@@ -58,16 +71,6 @@ loosely <- function(f) {
 }
 #' @export
 is_firm <- check_is_class("firm_closure")
-as_firm_closure <- function(f) {
-  if (!is_firm(f))
-    class(f) <- c("firm_closure", class(f))
-  f
-}
-with_sig <- function(f, sig, attrs) {
-  formals(f) <- sig
-  attributes(f) <- attrs
-  f
-}
 
 #' @export
 fasten <- fasten_(!!!error_class_chk)(fasten_)
