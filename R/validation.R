@@ -76,7 +76,7 @@ bind_promises <- function(args, env_eval, parent) {
 express_check <- function(exprs, nms) {
   lapply(seq_along(exprs), function(i)
     list(
-      expr = expr(UQ(as.name(nms[[i]]))(UQE(exprs[[i]]))),
+      expr = expr((!!as.name(nms[[i]]))(!!get_expr(exprs[[i]]))),
       env  = get_env(exprs[[i]])
     )
   )

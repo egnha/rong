@@ -86,7 +86,7 @@ test_that("global predicate function supports quasiquotation", {
     z <- 0
     rlang::quo({. > z})
   })
-  f <- firmly(function(x, y) NULL, !! pred1, {. > !! zero}, UQ(pred2))
+  f <- firmly(function(x, y) NULL, !! pred1, {. > !! zero}, !!pred2)
   expect_error(f(1, 1), NA)
   expect_error_perl(f(0, 1), errmsg_false("(function(x) x > zero)(x)"))
   expect_error_perl(f(0, 1), errmsg_false("(function (.) {. > z})(x)"))
@@ -99,7 +99,7 @@ test_that("local predicate function supports quasiquotation", {
     z <- 0
     function(x) x > z
   })
-  f <- firmly(function(x, y) NULL, UQ(predicate)(y), {. > !! zero}(x))
+  f <- firmly(function(x, y) NULL, (!!predicate)(y), {. > !! zero}(x))
   expect_error(f(1, 1), NA)
   expect_error_perl(f(0, 0), errmsg_false("(function (x) x > z)(y)"))
   expect_error_perl(f(0, 0), errmsg_false("(function (.) {. > 0})(x)"))

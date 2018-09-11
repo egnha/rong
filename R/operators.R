@@ -70,12 +70,12 @@ with_sig <- function(f, sig, attrs) {
 }
 
 #' @export
-fasten <- fasten_(UQS(error_class_chk))(fasten_)
+fasten <- fasten_(!!!error_class_chk)(fasten_)
 
 #' @export
 firmly <- fasten(
   "'f' must be a function" := is.function(f),
-  UQS(error_class_chk)
+  !!!error_class_chk
 )(
   function(f, ..., error_class = NULL) {
     if (is.primitive(f))
@@ -86,7 +86,7 @@ firmly <- fasten(
 
 #' @export
 validate <- fasten(
-  UQS(error_class_chk)
+  !!!error_class_chk
 )(
   function(., ..., error_class = NULL) {
     validate <- firm_core(validator)(..., error_class = error_class)
@@ -96,7 +96,7 @@ validate <- fasten(
 
 #' @export
 validator <- fasten(
-  UQS(error_class_chk)
+  !!!error_class_chk
 )(
   function(..., error_class = NULL) {
     error_class <- error_class %|||% "objectValidationError"
