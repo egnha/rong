@@ -30,7 +30,7 @@ esc_perl <- function(x) stringr::str_replace_all(x, "(\\W)", "\\\\\\1")
 # Expect exactly n errors matching pattern
 expect_n_errors <- function(n, f, args, pattern) {
   suppressWarnings(do.call(purrr::safely(f), args, quote = TRUE)) %>% {
-    stringr::str_count(.$error, pattern)
+    stringr::str_count(conditionMessage(.$error), pattern)
   } %>%
     expect_equal(n)
 }
